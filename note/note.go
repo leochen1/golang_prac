@@ -138,3 +138,30 @@ func BasicDataTypes() {
 }
 
 
+// 取址符 : &(獲取當前變量的內存地址)
+// 取值符 : *(訪問地址指向的值)
+// 數具類型 : *指向的類型
+func increase(n int) {
+	n++  // 這裡的n是一個局部變量, 會在函數調用完畢後被回收, n = n + 1
+	fmt.Printf("\nincrease結束時 n = %v \n n 的內存地址為 %v \n", n, &n)  //&n 是 n 的內存地址
+}
+
+func increase2(n *int) {
+	*n++  // 這裡的n是一個指針, 會將n的內存地址指向的值 + 1
+	fmt.Printf("\nincrease2結束時 n = %v \n n 的內存地址為 %v \n n 指向的值為 %v \n", n, &n, *n)  //&n 是 n 的內存地址, *n 是 n 的內存地址指向的值
+}
+
+// 2.4 指針
+func Pointer() {
+	var src = 2022
+	increase(src)
+	
+	increase2(&src)  // &src 是 src 的內存地址
+	fmt.Printf("調用 increase2(src)之後, src = %v \n src 的內存地址為 %v \n", src, &src)  //&src 是 src 的內存地址
+	
+	var ptr = new(int)  // new(T) 會為類型T分配一片內存空間, 並返回一個指向這片內存空間的指針
+	fmt.Printf("調用 increase2(ptr)之後, ptr = %v \n ptr 的內存地址為 %v \n ptr 指向的值為 %v", ptr, &ptr, *ptr)  //&ptr 是 ptr 的內存地址, *ptr 是 ptr 的內存地址指向的值
+}
+
+
+
