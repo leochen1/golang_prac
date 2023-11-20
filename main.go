@@ -1,7 +1,12 @@
 package main
 
-import "golang_prac/note"
+import (
+	"fmt"
+	"golang_prac/note"
+)
 
 func main() {
-	note.EscapedCharacters()
+	note.EscapedCharacters()     // 2.1 轉義字符
+	note.VariablesAndConstants() // 2.2 變量與常量
+	fmt.Println("note version : ", note.Version)
 }
