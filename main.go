@@ -9,4 +9,5 @@ func main() {
 	note.EscapedCharacters()     // 2.1 轉義字符
 	note.VariablesAndConstants() // 2.2 變量與常量
 	fmt.Println("note version : ", note.Version)
+	note.BasicDataTypes()  // 2.3 基本數據類型
 }

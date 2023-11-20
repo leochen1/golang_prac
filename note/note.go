@@ -76,4 +76,65 @@ func VariablesAndConstants() {
 }
 
 
+// 2.3 基本數據類型
+func BasicDataTypes() {
+	fmt.Println("2.3.1 整數型")
+	var (
+		n1 = 5
+		n2 int8 = 127
+		n3 uint16
+		n4 = 0b0101  // 二進制
+		n5 = 0O777   // 八進制
+		n6 = 0xAF	// 十六進制
+	)
+	fmt.Printf("n1=%v, type=%T \n", n1, n1)
+	fmt.Printf("n2=%v, type=%T \n", n2, n2)
+	fmt.Printf("n3=%v, type=%T \n", n3, n3)
+	fmt.Printf("n4=%v, type=%T \n", n4, n4)
+	fmt.Printf("n5=%v, type=%T \n", n5, n5)
+	fmt.Printf("n6=%v, type=%T \n", n6, n6)
+
+	fmt.Println("2.3.2 浮點型")
+	var (
+		f1 = 1.0
+		f2 float32 = 1
+		f3 float64 = 1
+	)
+	fmt.Printf("f1=%v, type=%T \n", f1, f1)
+	fmt.Printf("f2=%v, type=%T \n", f2, f2)
+	fmt.Printf("f3=%v, type=%T \n", f3, f3)
+
+	fmt.Println("2.3.3 數值型數據類型轉換")
+	n2 = int8(n3)
+	fmt.Printf("n2=%v, type=%T \n", n2, n2)
+
+	fmt.Println("2.3.4 字符型")
+	var (
+		c1 byte
+		c2 rune
+		c3 = '0'
+		c4 = '中'
+		c5 = 22345
+	)
+	fmt.Printf("c1的碼值=%v, 這個碼值對應的字符是=%c, type=%T \n", c1, c1, c1)
+	fmt.Printf("c2的碼值=%v, 這個碼值對應的字符是=%c, type=%T \n", c2, c2, c2)
+	fmt.Printf("c3的碼值=%v, 這個碼值對應的字符是=%c, type=%T \n", c3, c3, c3)
+	fmt.Printf("c4的碼值=%v, 這個碼值對應的字符是=%c, type=%T \n", c4, c4, c4)
+	fmt.Printf("c5的碼值=%v, 這個碼值對應的字符是=%c, type=%T \n", c5, c5, c5)
+	c6 := 'A' - 'a'  // 這裡的減法是將字符的碼值相減
+	c7 := 'x'  
+	c8 := c7 + c6  // 這裡的加法是將字符的碼值相加, 但是結果是int類型, 並不是字符類型, 所以要用%c輸出, 才能看到字符,
+	fmt.Printf("c8的碼值=%v, 這個碼值對應的字符是=%c, type=%T \n", c8, c8, c8)
+
+	fmt.Println("2.3.5 布林值")
+	var b1 bool
+	fmt.Printf("b1=%v, type=%T \n", b1, b1)
+
+	fmt.Println("2.3.6 字符串")
+	var s1 = "Hello"
+	println(s1 + "world")
+	println(s1, "world")
+	fmt.Println("len(s1) =", len(s1))
+}
+
 
