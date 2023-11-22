@@ -164,4 +164,50 @@ func Pointer() {
 }
 
 
+// 2.5 fmt 格式字符
+func FmtVerbs() {
+	fmt.Println("\n2.5.1 通用")
+	fmt.Println("%%")
+
+	fmt.Println("\n2.5.2 整數")
+	i := 123
+	fmt.Printf("%U\n", i)  // 16進制
+	fmt.Printf("%b\n", i)  // 2進制
+	fmt.Printf("%o\n", i)  // 8進制
+	fmt.Printf("%d\n", i)  // 10進制
+	fmt.Printf("%x\n", i)  // 16進制
+	fmt.Printf("%X\n", i)  // 16進制
+	fmt.Printf("%c\n", i)  // Unicode碼值對應的字符
+	fmt.Printf("%q\n", i)  // Unicode碼值對應的字符, 用單引號包裹
+
+	fmt.Println("\n2.5.3 浮點數")
+	f := 123.456
+	fmt.Printf("%f\n", f)  // 10進制
+	fmt.Printf("%.2f\n", f)  // 10進制, 保留2位小數
+	fmt.Printf("%20f\n", f)  // 10進制, 佔20位, 不足的部分用空格補齊
+	fmt.Printf("%20.2f\n", f)  // 10進制, 佔20位, 保留2位小數, 不足的部分用空格補齊
+	fmt.Printf("%b\n", f)  // 指數為2的冪次方的科學計數法
+	fmt.Printf("%e\n", f)  // 指數為10的冪次方的科學計數法
+	fmt.Printf("%E\n", f)  // 指數為10的冪次方的科學計數法
+	fmt.Printf("%g\n", f)  // 用%e或%f中較短的輸出表示, 並且不會有精確度的損失
+	fmt.Printf("%G\n", f)  // 用%E或%f中較短的輸出表示, 並且不會有精確度的損失
+
+	fmt.Println("\n2.5.4 布林值")
+	fmt.Printf("%t\n", f == 123.456)  // true
+
+	fmt.Println("\n2.5.5 字符串或 byte 切片")
+	s := "Hello World"
+	fmt.Printf("%s\n", s)  // 字符串
+	fmt.Printf("%q\n", s)  // 字符串, 用雙引號包裹
+	fmt.Printf("%x\n", s)  // 16進制
+	fmt.Printf("%X\n", s)  // 16進制
+
+	fmt.Println("\n2.5.6 指針")
+	p := &s
+	fmt.Printf("%p\n", p)  // 16進制, 指針的內存地址
+}
+
+
+
+
 

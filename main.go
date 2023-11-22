@@ -11,4 +11,5 @@ func main() {
 	fmt.Println("note version : ", note.Version)
 	note.BasicDataTypes()  // 2.3 基本數據類型
 	note.Pointer()		 // 2.4 指針
+	note.FmtVerbs()		 // 2.5 fmt占位符
 }
