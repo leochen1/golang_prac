@@ -12,4 +12,5 @@ func main() {
 	note.BasicDataTypes()  // 2.3 基本數據類型
 	note.Pointer()		 // 2.4 指針
 	note.FmtVerbs()		 // 2.5 fmt占位符
+	note.Operator()		 // 2.6 運算符
 }

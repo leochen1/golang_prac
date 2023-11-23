@@ -208,6 +208,48 @@ func FmtVerbs() {
 }
 
 
+// 2.6 運算符
+func Operator() {
+	fmt.Println("\n2.6.1 算術運算符")
+	fmt.Println("8%3 =", 8%3)
+
+	fmt.Println("\n2.6.2 位元運算符")
+	var b uint8 = 0b00111100
+	fmt.Printf("b>>2 = %b\n", b>>2)  // 右移2位
+	fmt.Printf("b<<2 = %b\n", b<<2)  // 左移2位
+
+	var b1 = 0b00111100
+	var b2 = 0b00001101
+	fmt.Printf("b1&b2 = %b\n", b1&b2)  // 位元與
+	fmt.Printf("b1|b2 = %b\n", b1|b2)  // 位元或
+	fmt.Printf("b1^b2 = %b\n", b1^b2)  // 位元異或
+
+	fmt.Println("\n2.6.3 邏輯運算符")
+	var b3 = true
+	var b4 = false
+	fmt.Printf("b3&&b4 = %v\n", b3&&b4)  // 邏輯與
+	fmt.Printf("b3||b4 = %v\n", b3||b4)  // 邏輯或
+	fmt.Printf("!b3 = %v\n", !b3)  // 邏輯非
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
