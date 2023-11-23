@@ -243,7 +243,19 @@ func Operator() {
 }
 
 
-
+// 3.1 if else
+func IfElse() {
+	var age uint
+	fmt.Println("請輸入年齡: ")
+	fmt.Scanln(&age)
+	if age < 13 {
+		fmt.Println("少兒不宜")
+	} else if age < 18 {
+		fmt.Println("青少年不宜")
+	} else {
+		fmt.Println("成人不宜")
+	}
+}
 
 
 
