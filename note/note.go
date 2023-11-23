@@ -135,6 +135,16 @@ func BasicDataTypes() {
 	println(s1 + "world")
 	println(s1, "world")
 	fmt.Println("len(s1) =", len(s1))
+
+	s := `
+		var (
+		c1 byte
+		c2 rune
+		c3 = '0'
+		c4 = '中'
+		c5 = 22345
+	)`
+	fmt.Println(s)  // 這裡的換行符會被保留
 }
 
 
