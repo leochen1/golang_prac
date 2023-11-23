@@ -14,4 +14,5 @@ func main() {
 	note.FmtVerbs()		 // 2.5 fmt占位符
 	note.Operator()		 // 2.6 運算符
 	note.IfElse()  	// 3.1 if else
+	note.SwitchCase()		// 3.2 switch
 }

@@ -258,8 +258,33 @@ func IfElse() {
 }
 
 
+// 3.2 switch case
+func SwitchCase() {
+	var age uint
+	fmt.Println("請輸入年齡: ")
+	fmt.Scanln(&age)
+	switch {
+	case age < 13:
+		fmt.Println("少兒不宜")
+		fallthrough  // 穿透, 繼續執行下一個case
+	case age < 18:
+		fmt.Println("青少年不宜")
+	default:
+		fmt.Println("成人不宜")
+	}
 
-
+	var weekday uint8
+	fmt.Println("請輸入星期幾: ")
+	fmt.Scanln(&weekday)
+	switch weekday {
+	case 1:
+		fmt.Println("星期一")
+	case 2:
+		fmt.Println("星期二")
+	default:
+		fmt.Println("其他天")
+	}
+}
 
 
 
