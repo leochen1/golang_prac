@@ -15,4 +15,5 @@ func main() {
 	note.Operator()		 // 2.6 運算符
 	note.IfElse()  	// 3.1 if else
 	note.SwitchCase()		// 3.2 switch
+	note.For()		// 3.3 for
 }
