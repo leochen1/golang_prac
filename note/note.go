@@ -16,7 +16,7 @@ func init() {
 	util.F("note.init2")
 }
 
-//2.1 轉義字符
+// 2.1 轉義字符
 func EscapedCharacters() {
 	fmt.Println("1. 雙引號")
 	fmt.Println("\"Hello\"")
@@ -56,7 +56,7 @@ const (
 	Version int = 100
 )
 
-//2.2 變量與常量
+// 2.2 變量與常量
 func VariablesAndConstants() {
 	fmt.Println("1. 變量聲明")
 	var v1 int
@@ -399,12 +399,10 @@ func DeferRecover() {
 	fmt.Println(3 / n)
 }
 
-
 // 3.7 init
 // init 函數會在 main 函數之前執行, 並且每個包都可以有多個 init 函數, 但是 init 函數不能被其他函數調用, 也不能被其他函數引用, 也不能有返回值, 也不能有參數
 // 1. 每個包可以有自己的 init 函數, 並且可以有多個
 // 2. 執行順序(取決於包的依賴關係) : 被依賴包的全局變量 > 被依賴包的 init 函數 > main包的全局變量 > main包的 init 函數 > main 函數
-
 
 // 3.8 包
 // 包名與目錄名可以不一致, 但是一般情況下, 包名與目錄名一致, 並且包名與目錄名都是小寫字母, 並且包名與目錄名不能有空格, 不能有特殊字符, 不能有數字開頭, 不能與內置關鍵字相同
@@ -412,8 +410,35 @@ func DeferRecover() {
 // 2. 引入包的語法 : import "包的路徑"
 // 3. 包的別名 : import 別名 "包的路徑"
 
+// 4.1 數組
+// 1. 數組是值類型, 數組的長度是數組類型的一部分, 也就是說 [5]int 和 [10]int 是不同的類型
+// 2. 數組的長度必須是常量, 並且長度是數組類型的一部分, 所以數組的長度是不能改變的
+// 3. 數組的元素可以是任意類型, 包括值類型和引用類型, 但是不能混用
+// 4. 數組可以通過下標訪問, 下標從0開始, 到長度減1
+func Array() {
+	// 4.1.1 聲明
+	var a = [...]int{1, 456, 789}
+	a[0] = 123
 
+	// 4.1.2 遍歷
+	for i := 0; i < len(a); i++ {
+		fmt.Printf("a[%v]=%v\n", i, a[i])
+	}
 
+	// 4.1.3 for range
+	for i, v := range a {
+		fmt.Printf("a[%v]=%v\n", i, v)
+	}
 
-
-
+	// 4.1.4 多維數組
+	var twoDimensionalArray [3][4]int = [3][4]int{
+		{1, 2, 3, 4},
+		{5, 6, 7},
+		{8, 9, 10, 11},
+	}
+	for i, v:= range twoDimensionalArray {
+		for j, v2 := range v {
+			fmt.Printf("twoDimensionalArray[%v][%v]=%v\n", i, j, v2)
+		}
+	}
+}

@@ -32,4 +32,5 @@ func main() {
 	note.Defer()		// 3.6 defer
 	note.DeferRecover()  // 3.6.2 defer, recover
 	fmt.Println("note.DeferRecover() 之後還在運行")
+	note.Array()		// 4.1 數組
 }
