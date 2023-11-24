@@ -352,7 +352,41 @@ func Function2() {
 	fmt.Println("res1 =", res1, "res2 =", res2)
 }
 
-
+// 3.6 defer
+// defer 會將函數推遲到當前函數執行完畢後再執行
+// defer 會將函數壓入一個棧中, 當函數執行完畢後, 會從棧中取出函數, 並執行
+// defer 會 "先進後出", 類似於棧
+// defer 會先執行參數, 再執行函數
+// defer 會先執行後定義的, 再執行先定義的
+// defer 會先執行外層函數, 再執行內層函數
+// defer 會先執行return, 再執行defer
+func deferUtil() func(int) int {
+	i := 0
+	return func(n int) int {
+		fmt.Printf("本次調用接收到n=%v\n", n)
+		i++
+		fmt.Printf("匿名工具函數被第%v次調用\n", i)
+		return i
+	}
+}
+func Defer() int {
+	f := deferUtil()
+	//defer f(f(3))  // 這裡的f(f(3))會先執行, 但是不會立即執行, 會被壓入棧中, 等到函數執行完畢後, 再從棧中取出, 並執行
+	defer f(1) // 這裡的f(1)會先執行, 但是不會立即執行, 會被壓入棧中, 等到函數執行完畢後, 再從棧中取出, 並執行
+	defer f(2)
+	defer f(3)
+	return f(4)
+}
+func DeferRecover() {
+	defer func() {
+		err := recover() // recover()必須在defer中執行, 並且必須在異常發生後執行
+		if err != nil {
+			fmt.Println("err =", err)
+		}
+	}()
+	n := 0
+	fmt.Println(3 / n)
+}
 
 
 

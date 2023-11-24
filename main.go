@@ -19,4 +19,7 @@ func main() {
 	note.LabelAndGoto()	 // 3.4 label 與 goto
 	note.Function()		// 3.5 函數, 匿名函數
 	note.Function2()  // 3.5.2 函數, 直接調用函數
+	note.Defer()		// 3.6 defer
+	note.DeferRecover()  // 3.6.2 defer, recover
+	fmt.Println("note.DeferRecover() 之後還在運行")
 }
