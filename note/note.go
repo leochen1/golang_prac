@@ -1,8 +1,20 @@
 package note
 
-import "fmt"
+import (
+	"fmt"
+	"golang_prac/util"
+)
 
 var v int = 100
+
+var A = util.F("note.A")
+
+func init() {
+	util.F("note.init1")
+}
+func init() {
+	util.F("note.init2")
+}
 
 //2.1 轉義字符
 func EscapedCharacters() {
@@ -387,6 +399,16 @@ func DeferRecover() {
 	n := 0
 	fmt.Println(3 / n)
 }
+
+
+// 3.7 init
+// init 函數會在 main 函數之前執行, 並且每個包都可以有多個 init 函數, 但是 init 函數不能被其他函數調用, 也不能被其他函數引用, 也不能有返回值, 也不能有參數
+// 1. 每個包可以有自己的 init 函數, 並且可以有多個
+// 2. 執行順序(取決於包的依賴關係) : 被依賴包的全局變量 > 被依賴包的 init 函數 > main包的全局變量 > main包的 init 函數 > main 函數
+
+
+
+
 
 
 

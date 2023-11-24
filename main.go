@@ -3,7 +3,17 @@ package main
 import (
 	"fmt"
 	"golang_prac/note"
+	"golang_prac/util"
 )
+
+var A = util.F("main.A")
+
+func init() {
+	util.F("main.init1")
+}
+func init() {
+	util.F("main.init2")
+}
 
 func main() {
 	note.EscapedCharacters()     // 2.1 轉義字符
