@@ -17,4 +17,6 @@ func main() {
 	note.SwitchCase()		// 3.2 switch
 	note.For()		// 3.3 for
 	note.LabelAndGoto()	 // 3.4 label 與 goto
+	note.Function()		// 3.5 函數, 匿名函數
+	note.Function2()  // 3.5.2 函數, 直接調用函數
 }

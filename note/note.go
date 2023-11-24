@@ -318,19 +318,39 @@ func LabelAndGoto() {
 		fmt.Println()
 	}
 	fmt.Println("\n3.4.2 goto")
-	fmt.Print("1" )
-	if i:=1; i==1 {
-		goto four  // 跳轉到four標籤, 不推薦使用
+	fmt.Print("1")
+	if i := 1; i == 1 {
+		goto four // 跳轉到four標籤, 不推薦使用
 	}
-	fmt.Print("2" )
-	fmt.Print("3" )
-	four:
-	fmt.Print("4" )
-	fmt.Print("5" )
+	fmt.Print("2")
+	fmt.Print("3")
+four:
+	fmt.Print("4")
+	fmt.Print("5")
 }
 
+// 3.5 函數
+func Function() {
+	// 匿名函數
+	var getRes = func(n1, n2 int) (sum, difference int) {
+		sum = n1 + n2
+		difference = n1 - n2
+		return
+	}
+	res1, res2 := getRes(2, 3)
+	fmt.Println("res1 =", res1, "res2 =", res2)
+	// fmt.Printf("getRes=%v, Type of getRes=%T\n", getRes, getRes)
+}
 
-
+func Function2() {
+	// 直接調用函數
+	res1, res2 := func(n1, n2 int) (sum, difference int) {
+		sum = n1 + n2
+		difference = n1 - n2
+		return
+	}(2, 3)
+	fmt.Println("res1 =", res1, "res2 =", res2)
+}
 
 
 
