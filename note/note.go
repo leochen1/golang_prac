@@ -161,18 +161,17 @@ func BasicDataTypes() {
 // 取址符 : &(獲取當前變量的內存地址)
 // 取值符 : *(訪問地址指向的值)
 // 數具類型 : *指向的類型
-func increase(n int) {
-	n++                                                         // 這裡的n是一個局部變量, 會在函數調用完畢後被回收, n = n + 1
-	fmt.Printf("\nincrease結束時 n = %v \n n 的內存地址為 %v \n", n, &n) //&n 是 n 的內存地址
-}
-
-func increase2(n *int) {
-	*n++                                                                           // 這裡的n是一個指針, 會將n的內存地址指向的值 + 1
-	fmt.Printf("\nincrease2結束時 n = %v \n n 的內存地址為 %v \n n 指向的值為 %v \n", n, &n, *n) //&n 是 n 的內存地址, *n 是 n 的內存地址指向的值
-}
 
 // 2.4 指針
 func Pointer() {
+	var increase = func(n int) {
+		n++                                                         // 這裡的n是一個局部變量, 會在函數調用完畢後被回收, n = n + 1
+		fmt.Printf("\nincrease結束時 n = %v \n n 的內存地址為 %v \n", n, &n) //&n 是 n 的內存地址
+	}
+	var increase2 = func(n *int) {
+		*n++                                                                           // 這裡的n是一個指針, 會將n的內存地址指向的值 + 1
+		fmt.Printf("\nincrease2結束時 n = %v \n n 的內存地址為 %v \n n 指向的值為 %v \n", n, &n, *n) //&n 是 n 的內存地址, *n 是 n 的內存地址指向的值
+	}
 	var src = 2022
 	increase(src)
 
@@ -406,6 +405,12 @@ func DeferRecover() {
 // 1. 每個包可以有自己的 init 函數, 並且可以有多個
 // 2. 執行順序(取決於包的依賴關係) : 被依賴包的全局變量 > 被依賴包的 init 函數 > main包的全局變量 > main包的 init 函數 > main 函數
 
+
+// 3.8 包
+// 包名與目錄名可以不一致, 但是一般情況下, 包名與目錄名一致, 並且包名與目錄名都是小寫字母, 並且包名與目錄名不能有空格, 不能有特殊字符, 不能有數字開頭, 不能與內置關鍵字相同
+// 1. GO程式是由包構成的, 程式從 main 包開始運行
+// 2. 引入包的語法 : import "包的路徑"
+// 3. 包的別名 : import 別名 "包的路徑"
 
 
 
