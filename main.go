@@ -16,4 +16,5 @@ func main() {
 	note.IfElse()  	// 3.1 if else
 	note.SwitchCase()		// 3.2 switch
 	note.For()		// 3.3 for
+	note.LabelAndGoto()	 // 3.4 label 與 goto
 }

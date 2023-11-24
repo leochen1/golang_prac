@@ -304,6 +304,33 @@ func For() {
 	}
 }
 
+// 3.4 label 與 goto
+func LabelAndGoto() {
+	// outside:
+	fmt.Println("\n3.4.1 label")
+	for i := 0; i < 10; i++ {
+		for j := 0; j < 10; j++ {
+			fmt.Print("+ ")
+			if i == 9 && j == 4 {
+				// break outside
+			}
+		}
+		fmt.Println()
+	}
+	fmt.Println("\n3.4.2 goto")
+	fmt.Print("1" )
+	if i:=1; i==1 {
+		goto four  // 跳轉到four標籤, 不推薦使用
+	}
+	fmt.Print("2" )
+	fmt.Print("3" )
+	four:
+	fmt.Print("4" )
+	fmt.Print("5" )
+}
+
+
+
 
 
 
