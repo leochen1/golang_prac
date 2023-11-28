@@ -504,7 +504,46 @@ func Slice() {
 }
 
 
+// 4.3 map
+// 1. map 是一種無序的 key-value 對集合, key是唯一的, 並且key是可以比較的, 並且key只能是值類型, 並且value可以是任意類型
+// 2. map 是引用類型, 並且可以使用 make() 來創建, 並且可以使用 len() 來獲取元素個數
+// 3. map 的容量達到後, 再增加元素, map 的容量會自動擴容
+// 4. map 的value為引用類型時, 修改了原始值, map 中的值也會跟著改變
+func Map() {
+	var m1 map[string]string
+	fmt.Println("m1 = nil?", m1==nil)
 
+	m1 = make(map[string]string)  // make(map[string]string, 2) 這裡的2是容量, 並不是長度, 並且容量是可選的, 如果不寫 (默認1), 那麼容量 = 長度
+	m1["name"] = "Tom"
+	m1["age"] = "18"
+	m1["height"] = "180"
+	fmt.Println("m1 =", m1)
+
+	m2 := map[string]string{
+		"name": "Tom",
+		"age": "18",
+	}
+	fmt.Println("m2 =", m2)
+
+	v, ok := m2["name"]  // 這裡的ok是一個bool值, 如果key存在, 那麼ok = true, 如果key不存在, 那麼ok = false
+	if ok {
+		fmt.Println("m2[\"name\"] =", v)
+	} else {
+		fmt.Println("key does not exist")
+	}
+
+	delete(m2, "age")  // 刪除key
+	fmt.Println("m2 =", m2)
+
+	for key, value := range m1 {
+		fmt.Printf("m1[%v] = %v\n", key, value)
+	}
+
+	m1 = nil  // 將map賦值為nil, 並不會釋放map佔用的內存, 但是map中的元素會被回收
+	m2 = make(map[string]string)  // 這裡的m2會重新分配內存, 並且map中的元素會被回收
+	fmt.Println("m1 =", m1)
+	fmt.Println("m2 =", m2)
+}
 
 
 

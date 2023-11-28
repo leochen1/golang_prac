@@ -34,4 +34,5 @@ func main() {
 	fmt.Println("note.DeferRecover() 之後還在運行")
 	note.Array()		// 4.1 數組
 	note.Slice()		// 4.2 切片
+	note.Map()		// 4.3 map
 }
