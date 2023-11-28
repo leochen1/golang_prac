@@ -546,4 +546,23 @@ func Map() {
 }
 
 
+// 4.4 自定義數據類型&類型別名
+// 1. type 類型名 類型
+// 2. 類型別名只會在程序中存在, 在編譯後不會有類型別名的存在
+// 3. 類型別名和類型在使用上完全一致, 並且可以相互轉換, 但是類型別名和類型在使用上是不同的, 不能相互轉換
+func TypeDefinitionAndTypeAlias() {
+	fmt.Println("\n4.4.1 自定義數據類型")
+	type mesType uint16  // 自定義數據類型
+	var u1000 uint16 = 1000  
+	var textMes mesType = mesType(u1000)  // 需做類型轉換
+	fmt.Printf("textMes = %v, type = %T\n", textMes, textMes)
+
+	fmt.Println("\n4.4.2 類型別名")
+	type myUnit16 = uint16  // 類型別名只會在程序中存在, 在編譯後不會有類型別名的存在
+	var myu16 myUnit16 = 1000  // 不需做類型轉換
+	fmt.Printf("myu16 = %v, type = %T\n", myu16, myu16)
+}
+
+
+
 
