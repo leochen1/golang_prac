@@ -10,7 +10,11 @@ var F = func(s string) int {
 	return i
 }
 
-
-
-
-
+func SelectByKey(text ...string) (key int) {
+	for i, v := range text {
+		fmt.Printf("%v : %v\n", i, v)
+	}
+	fmt.Println("請輸入你的選擇")
+	fmt.Scanln(&key)
+	return key
+}

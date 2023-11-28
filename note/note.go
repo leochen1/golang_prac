@@ -436,9 +436,75 @@ func Array() {
 		{5, 6, 7},
 		{8, 9, 10, 11},
 	}
-	for i, v:= range twoDimensionalArray {
+	for i, v := range twoDimensionalArray {
 		for j, v2 := range v {
 			fmt.Printf("twoDimensionalArray[%v][%v]=%v\n", i, j, v2)
 		}
 	}
 }
+
+// 4.2 切片
+// 切片是對數組的引用，切片本身並不存儲任何數據，他只是描述了底層數組中的一段
+// 1. 切片的長度是可以變化的，因此切片是一種動態數組
+// 2. 切片是一種引用類型，他的內部結構包含了三個元素：底層數組的指針、切片的長度（len）和切片的容量（cap）
+// 3. 切片一般用於快速地操作一塊數據集合
+// 4.2.1 聲明
+// 1. 引用數組的一段
+// 2. 引用切片的一段*(將指向同一個底層數組)
+// 3. 分配內存空間make([]T, len, cap)
+// 4.2.2 長度與容量
+// len(s) : 切片的長度
+// cap(s) : 切片的容量
+func Slice() {
+	array := [5]int{1, 2, 3, 4, 5}
+	var s1 []int = array[1:4] // 這裡的1是起始下標, 4是結束下標, 但是不包含結束下標對應的元素, [0:len(array)] = [:]
+	s1[0] = 0
+	fmt.Println("array = ", array)
+	s2 := s1[1:]
+	s2[0] = 0
+	fmt.Println("array = ", array)
+	var s3 []int // nil 切片, 長度和容量都是0, 並且沒有底層數組, 一般用於判斷切片是否初始化, 不能對nil切片進行操作, 但是可以對nil切片賦值
+	fmt.Println("does s3==nil? ", s3 == nil)
+	s3 = make([]int, 3, 5) // make([]T, len, cap) 這裡的len是切片的長度, cap是切片的容量, 並且len <= cap, 如果不寫 cap, 那麼 cap = len
+	fmt.Printf("len(s3) = %v, cap(s3) = %v", len(s3), cap(s3))
+	s4 := []int{1, 2, 3} // 這裡的[]int是切片類型, {1,2,3}是切片的值, 並且這裡的len = cap = 3
+	fmt.Printf("s4 = %v, len(s4) = %v, cap(s4) = %v", s4, len(s4), cap(s4))
+
+	// 4.2.3 追加元素
+	s1 = append(s1, 6, 7, 8) // 底層創建了新的數組，不再引用原數組，append(s, x...) 這裡的s是切片, x是元素, 這裡的x可以是多個元素, 並且可以是切片, 但是切片需要展開
+	s1[4] = 0
+	fmt.Println("array = ", array)
+	fmt.Println("s1 = ", s1)
+
+	s5 := append(s1, s2...) // Fix: Use '...' to expand the elements of s2 , 表示將 s2 切片中的所有元素作為參數傳遞。
+	fmt.Println("s5 = ", s5)
+
+	// 4.2.4 拷貝切片
+	s6 := []int{1, 1, 1}
+	copy(s6, s5) // copy(dst, src) 這裡的dst是目標切片, src是源切片, 並且會將src中的元素拷貝到dst中, 並且會覆蓋dst中的元素, 並且會以len(src)和len(dst)中的最小值作為拷貝的長度
+	fmt.Println("s6 = ", s6)
+	copy(s5, s6)  // 這裡的len(src) = 3, len(dst) = 7, 所以只會拷貝3個元素, 並且會覆蓋s5中的元素
+	fmt.Println("s5 = ", s5)  
+
+	// 4.2.5 string 與 []byte
+	// string 是不可變的, 也就是說不能通過 s[0] = 'a' 這種方式來修改字符串中的字符, 但是可以通過 []byte 來修改, 並且 []byte 可以和 string 互相轉換
+	s7 := "Hello 世界"
+	s8 := []byte(s7) // 將字符串轉換為 []byte
+	fmt.Printf("s8 = %s", s8)
+	fmt.Printf("s8 = %v", s8)
+	s8[0] = 'h'
+	fmt.Printf("s8 = %s", s8)
+
+	for i, v := range s7 {
+		fmt.Printf("s7[%d] = %c\n", i, v)
+	}
+
+	key:= util.SelectByKey("註冊", "登錄", "退出")
+	fmt.Println("key =", key)
+}
+
+
+
+
+
+
