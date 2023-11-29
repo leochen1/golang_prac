@@ -564,5 +564,58 @@ func TypeDefinitionAndTypeAlias() {
 }
 
 
+// 4.5 結構體
+// 1. 結構體是"值""類型, 通過 . 訪問
+// 2. 結構體的每個字段上，可以寫一個tag，該tag可以通過反射機制獲取，常用於序列化和反序列化
+// 3. 結構體中的字段名必須唯一
+// 結構體指針, 注意 "." 優先級高於 "&" / "*"
+// 使用時可以簡寫(隱式間接引用) : p1.name = "Tom" 等價於 (*p1).name = "Tom"
+//  可以使用 "&" 前綴快速聲明結構體指針 : p2 := &person{} 
+type User struct {
+	Name string
+	Id uint32
+}
+type Account struct {
+	User  // 匿名字段, 這裡的User是類型, 並不是字段名, 這裡的User類型是User結構體, 並且User結構體中的字段會被提升到Account結構體中
+	password string
+}
+type Contact struct {
+	*User  // 匿名字段, 這裡的User是類型, 並不是字段名, 這裡的User類型是*User結構體指針, 並且User結構體中的字段會被提升到Contact結構體中
+	Remark string
+}
+func Struct() {
+	var u1 User = User {
+		Name: "張三",
+	}
+	u1.Id = 10000
+	var u2 *User = &User {
+		Name: "李四",
+	}
+	u2.Id = 10001  // (*u2).Id = 10001
+
+	var a1 = Account {
+		User: User {
+			Name: u1.Name,
+		},
+		password: "123456",
+	}
+	var c1 *Contact = &Contact {
+		User: &User{
+			Id: u2.Id,
+		},  
+		Remark: "備註",
+	}
+	c1.Name = "趙六"  //c1.User.Name = "趙六"  //沒有重複字段時, 可以簡寫
+	fmt.Println("a1 = ", a1)
+	fmt.Println("c1 = ", c1)
+	fmt.Println("c1.User = ", c1.User)
+}
+
+
+
+
+
+
+
 
 
