@@ -59,8 +59,7 @@ const (
 // 2.2 變量與常量
 func VariablesAndConstants() {
 	fmt.Println("1. 變量聲明")
-	var v1 int
-	v1 = 1
+	v1 := 1
 	var v2 int = 2
 	var v3 = 3
 	v4 := 4
@@ -322,9 +321,9 @@ func LabelAndGoto() {
 	for i := 0; i < 10; i++ {
 		for j := 0; j < 10; j++ {
 			fmt.Print("+ ")
-			if i == 9 && j == 4 {
-				// break outside
-			}
+			//if i == 9 && j == 4 {
+			//	// break outside
+			//}
 		}
 		fmt.Println()
 	}
