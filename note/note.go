@@ -707,7 +707,7 @@ func Interface() {
 // sync 包 : 提供了互斥鎖(Mutex), 用於保護共享資源, 但在 Go 中不常用, 因為會導致性能下降
 // go 中有更高效的信道(Channel)機制, 用於保護共享資源
 var (
-	c int
+	c    int
 	lock sync.Mutex
 )
 
@@ -724,13 +724,71 @@ func PrimeNum(n int) {
 }
 func Goroutine() {
 	for i := 2; i < 100001; i++ {
-		go PrimeNum(i)  // 開啟 Goroutine, 並發執行, 但是不會等待 Goroutine 執行完畢, 主線程會繼續執行
+		go PrimeNum(i) // 開啟 Goroutine, 並發執行, 但是不會等待 Goroutine 執行完畢, 主線程會繼續執行
 	}
 	var key string
 	fmt.Scanln(&key) // 接收鍵盤輸入, 這裡的 Scanln 會阻斷主線程, 並等待鍵盤輸入, 這樣就可以保證主線程不會在 Goroutine 執行完畢前結束
 	fmt.Printf("共找到 %v 個質數\n", c)
 }
 
+// 5.4 信道 (Channel)
+// channel 是一種帶有類型的管道，引用類型，需要使用 make(Type,(緩衝區容量)) 函數初始化
+// 不帶緩衝區的管道必須結合線程使用，否則會造成死鎖
+// 可以查看長度 len(ch) 和容量 cap(ch)
+// 存入 : ch <- value
+// 取出 : value, (ok) <- ch
+// 丟棄 : <- ch
+// 關閉 : close(ch) , 關閉後不能再寫入, 但是可以繼續讀取
+// 先進先出, 自動阻塞
+// 數據需要保持流動，否則會造成死鎖
+// 5.4.1 for 或 for...range : 不斷從管道中讀取數據, 直到管道關閉 (缺乏關閉機制會報錯)
+// 5.4.2 select case : 適用於無法確認合適關閉管道的情況，通常結合 for 循環使用
+// select ... case 會阻塞到某個分支可以繼續執行時執行該分支，當沒有可執行的分支時則執行 default 分支，如果沒有 default 分支，則阻塞
 
+func pushNum(c chan int) {
+	for i := 0; i < 100; i++ {
+		c <- i  // 將 i 寫入到 c 信道中
+	}
+	close(c)  // 關閉 c 信道
+}
 
+func pushPrimeNum(n int, c chan int) {
+	for i := 2; i < n; i++ {
+		if n%i == 0 {
+			return
+		}
+	}
+	c <- n  // 將 n 寫入到 c 信道中
+}
 
+func Channel() {
+	var c1 chan int = make(chan int)  // 創建一個 int 類型的信道
+	go pushNum(c1)  // 開啟 Goroutine, 並發執行, 但是不會等待 Goroutine 執行完畢, 主線程會繼續執行
+	// for {
+	// 	v, ok := <-c1  // 從 c1 信道中讀取數據, 並且返回兩個值, v 是讀取到的數據, ok 是一個 bool 值, 如果讀取成功, 那麼 ok = true, 如果讀取失敗, 那麼 ok = false
+	// 	if ok {
+	// 		fmt.Printf("%v\t", v)  // 如果讀取成功, 那麼輸出 v
+	// 	} else {
+	// 		break
+	// 	}
+	// }
+	for v := range c1 {  
+		// 從 c1 信道中讀取數據, 並且返回一個值, v 是讀取到的數據, 並且會自動判斷 c1 信道是否關閉, 如果關閉, 那麼會跳出 for 循環
+		fmt.Printf("%v\t", v)  // 如果讀取成功, 那麼輸出 v
+	}
+
+	var c2 chan int = make(chan int, 100)  // 創建一個 int 類型的信道, 並且設置緩衝區容量為 100
+	for i := 2; i < 100001; i++ {
+		go pushPrimeNum(i, c2)  // 開啟 Goroutine, 並發執行, 但是不會等待 Goroutine 執行完畢, 主線程會繼續執行
+	}
+	Print:
+	for {
+		select {
+		case v := <-c2:  // 從 c2 信道中讀取數據, 並且返回一個值, v 是讀取到的數據
+			fmt.Printf("%v\t", v)  // 如果讀取成功, 那麼輸出 v
+		default:
+			fmt.Println("所有質數已找到")
+			break Print
+		}
+	}
+}
