@@ -611,8 +611,24 @@ func Struct() {
 }
 
 
-
-
+// 5.1 方法
+// 與特定類型關聯的函數, 類型的定義和方法需要在同一個包內
+// func (接收參數名 類型) 方法名(參數列表) (返回值列表) { 函數體 }
+// 1. 接收者可以是值類型或者指針類型
+func (u User) printName() {
+	fmt.Println("u.Name = ", u.Name)
+}
+func (u *User) setId() {
+	(*u).Id = 10002
+}
+func Method() {
+	u := User {
+		Name: "小小",
+	}
+	u.printName()
+	u.setId()
+	fmt.Println("u = ", u)
+}
 
 
 

@@ -37,4 +37,5 @@ func main() {
 	note.Map()		// 4.3 map
 	note.TypeDefinitionAndTypeAlias() // 4.4 類型定義與類型別名
 	note.Struct()		// 4.5 結構體
+	note.Method()		// 4.6 方法
 }
