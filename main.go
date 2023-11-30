@@ -38,4 +38,5 @@ func main() {
 	note.TypeDefinitionAndTypeAlias() // 4.4 類型定義與類型別名
 	note.Struct()		// 4.5 結構體
 	note.Method()		// 4.6 方法
+	note.Interface()	// 4.7 接口
 }

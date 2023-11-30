@@ -482,8 +482,8 @@ func Slice() {
 	s6 := []int{1, 1, 1}
 	copy(s6, s5) // copy(dst, src) 這裡的dst是目標切片, src是源切片, 並且會將src中的元素拷貝到dst中, 並且會覆蓋dst中的元素, 並且會以len(src)和len(dst)中的最小值作為拷貝的長度
 	fmt.Println("s6 = ", s6)
-	copy(s5, s6)  // 這裡的len(src) = 3, len(dst) = 7, 所以只會拷貝3個元素, 並且會覆蓋s5中的元素
-	fmt.Println("s5 = ", s5)  
+	copy(s5, s6) // 這裡的len(src) = 3, len(dst) = 7, 所以只會拷貝3個元素, 並且會覆蓋s5中的元素
+	fmt.Println("s5 = ", s5)
 
 	// 4.2.5 string 與 []byte
 	// string 是不可變的, 也就是說不能通過 s[0] = 'a' 這種方式來修改字符串中的字符, 但是可以通過 []byte 來修改, 並且 []byte 可以和 string 互相轉換
@@ -498,10 +498,9 @@ func Slice() {
 		fmt.Printf("s7[%d] = %c\n", i, v)
 	}
 
-	key:= util.SelectByKey("註冊", "登錄", "退出")
+	key := util.SelectByKey("註冊", "登錄", "退出")
 	fmt.Println("key =", key)
 }
-
 
 // 4.3 map
 // 1. map 是一種無序的 key-value 對集合, key是唯一的, 並且key是可以比較的, 並且key只能是值類型, 並且value可以是任意類型
@@ -510,9 +509,9 @@ func Slice() {
 // 4. map 的value為引用類型時, 修改了原始值, map 中的值也會跟著改變
 func Map() {
 	var m1 map[string]string
-	fmt.Println("m1 = nil?", m1==nil)
+	fmt.Println("m1 = nil?", m1 == nil)
 
-	m1 = make(map[string]string)  // make(map[string]string, 2) 這裡的2是容量, 並不是長度, 並且容量是可選的, 如果不寫 (默認1), 那麼容量 = 長度
+	m1 = make(map[string]string) // make(map[string]string, 2) 這裡的2是容量, 並不是長度, 並且容量是可選的, 如果不寫 (默認1), 那麼容量 = 長度
 	m1["name"] = "Tom"
 	m1["age"] = "18"
 	m1["height"] = "180"
@@ -520,30 +519,29 @@ func Map() {
 
 	m2 := map[string]string{
 		"name": "Tom",
-		"age": "18",
+		"age":  "18",
 	}
 	fmt.Println("m2 =", m2)
 
-	v, ok := m2["name"]  // 這裡的ok是一個bool值, 如果key存在, 那麼ok = true, 如果key不存在, 那麼ok = false
+	v, ok := m2["name"] // 這裡的ok是一個bool值, 如果key存在, 那麼ok = true, 如果key不存在, 那麼ok = false
 	if ok {
 		fmt.Println("m2[\"name\"] =", v)
 	} else {
 		fmt.Println("key does not exist")
 	}
 
-	delete(m2, "age")  // 刪除key
+	delete(m2, "age") // 刪除key
 	fmt.Println("m2 =", m2)
 
 	for key, value := range m1 {
 		fmt.Printf("m1[%v] = %v\n", key, value)
 	}
 
-	m1 = nil  // 將map賦值為nil, 並不會釋放map佔用的內存, 但是map中的元素會被回收
-	m2 = make(map[string]string)  // 這裡的m2會重新分配內存, 並且map中的元素會被回收
+	m1 = nil                     // 將map賦值為nil, 並不會釋放map佔用的內存, 但是map中的元素會被回收
+	m2 = make(map[string]string) // 這裡的m2會重新分配內存, 並且map中的元素會被回收
 	fmt.Println("m1 =", m1)
 	fmt.Println("m2 =", m2)
 }
-
 
 // 4.4 自定義數據類型&類型別名
 // 1. type 類型名 類型
@@ -551,17 +549,16 @@ func Map() {
 // 3. 類型別名和類型在使用上完全一致, 並且可以相互轉換, 但是類型別名和類型在使用上是不同的, 不能相互轉換
 func TypeDefinitionAndTypeAlias() {
 	fmt.Println("\n4.4.1 自定義數據類型")
-	type mesType uint16  // 自定義數據類型
-	var u1000 uint16 = 1000  
-	var textMes mesType = mesType(u1000)  // 需做類型轉換
+	type mesType uint16 // 自定義數據類型
+	var u1000 uint16 = 1000
+	var textMes mesType = mesType(u1000) // 需做類型轉換
 	fmt.Printf("textMes = %v, type = %T\n", textMes, textMes)
 
 	fmt.Println("\n4.4.2 類型別名")
-	type myUnit16 = uint16  // 類型別名只會在程序中存在, 在編譯後不會有類型別名的存在
-	var myu16 myUnit16 = 1000  // 不需做類型轉換
+	type myUnit16 = uint16    // 類型別名只會在程序中存在, 在編譯後不會有類型別名的存在
+	var myu16 myUnit16 = 1000 // 不需做類型轉換
 	fmt.Printf("myu16 = %v, type = %T\n", myu16, myu16)
 }
-
 
 // 4.5 結構體
 // 1. 結構體是"值""類型, 通過 . 訪問
@@ -569,47 +566,48 @@ func TypeDefinitionAndTypeAlias() {
 // 3. 結構體中的字段名必須唯一
 // 結構體指針, 注意 "." 優先級高於 "&" / "*"
 // 使用時可以簡寫(隱式間接引用) : p1.name = "Tom" 等價於 (*p1).name = "Tom"
-//  可以使用 "&" 前綴快速聲明結構體指針 : p2 := &person{} 
+//
+//	可以使用 "&" 前綴快速聲明結構體指針 : p2 := &person{}
 type User struct {
 	Name string
-	Id uint32
+	Id   uint32
 }
 type Account struct {
-	User  // 匿名字段, 這裡的User是類型, 並不是字段名, 這裡的User類型是User結構體, 並且User結構體中的字段會被提升到Account結構體中
+	User     // 匿名字段, 這裡的User是類型, 並不是字段名, 這裡的User類型是User結構體, 並且User結構體中的字段會被提升到Account結構體中
 	password string
 }
 type Contact struct {
 	*User  // 匿名字段, 這裡的User是類型, 並不是字段名, 這裡的User類型是*User結構體指針, 並且User結構體中的字段會被提升到Contact結構體中
 	Remark string
 }
+
 func Struct() {
-	var u1 User = User {
+	var u1 User = User{
 		Name: "張三",
 	}
 	u1.Id = 10000
-	var u2 *User = &User {
+	var u2 *User = &User{
 		Name: "李四",
 	}
-	u2.Id = 10001  // (*u2).Id = 10001
+	u2.Id = 10001 // (*u2).Id = 10001
 
-	var a1 = Account {
-		User: User {
+	var a1 = Account{
+		User: User{
 			Name: u1.Name,
 		},
 		password: "123456",
 	}
-	var c1 *Contact = &Contact {
+	var c1 *Contact = &Contact{
 		User: &User{
 			Id: u2.Id,
-		},  
+		},
 		Remark: "備註",
 	}
-	c1.Name = "趙六"  //c1.User.Name = "趙六"  //沒有重複字段時, 可以簡寫
+	c1.Name = "趙六" //c1.User.Name = "趙六"  //沒有重複字段時, 可以簡寫
 	fmt.Println("a1 = ", a1)
 	fmt.Println("c1 = ", c1)
 	fmt.Println("c1.User = ", c1.User)
 }
-
 
 // 5.1 方法
 // 與特定類型關聯的函數, 類型的定義和方法需要在同一個包內
@@ -622,13 +620,91 @@ func (u *User) setId() {
 	(*u).Id = 10002
 }
 func Method() {
-	u := User {
+	u := User{
 		Name: "小小",
 	}
 	u.printName()
 	u.setId()
 	fmt.Println("u = ", u)
 }
+
+// 5.2 接口
+// 特殊的數據類型, 方法定義的集合, 提高代碼的複用率
+// 方法名(形參類型) 返回值類型
+// 接口本身不能綁定方法, 接口是值類型, 保存的是 : 值 + 原始類型
+// 一個類型實現了接口的所有方法, 即實現了該接口, go 中無須 implements 關鍵字
+// 5.2.3 類型選擇
+// switch ... case + interface.(type)
+// .(type) 不能在 switch case 外使用
+// 5.2.4 類型斷言
+// 還原為原始類型 : interface.(Type)
+// 可返回兩個值 : value, ok := interface.(Type)
+// 5.2.5 空接口
+// 沒有任何方法的接口, 所有類型都實現了空接口, 也就是說空接口可以存儲任意類型的值
+// 5.2.6 nil 問題
+// nil 值 : 有類型沒有值, 接口本身並不是 nil, 可以處理
+// nil 接口 : 既沒有保存值, 也沒有保存類型, 使用時會報錯
+type textMes struct {
+	Type string
+	Text string
+}
+type imageMes struct {
+	Type string
+	Img  string
+}
+
+func (tm *textMes) setText() {
+	tm.Text = "Hello"
+}
+func (im *imageMes) setImg() {
+	im.Img = "image"
+}
+
+func (tm *textMes) setType() {
+	tm.Type = "文字消息"
+}
+func (im *imageMes) setType() {
+	im.Type = "圖片消息"
+}
+
+type Mes interface {
+	setType()
+}
+
+func SendMes(m Mes) {
+	m.setType()
+	switch mptr := m.(type) {
+	case *textMes:
+		mptr.setText()
+	case *imageMes:
+		mptr.setImg()
+	}
+	fmt.Println("m = ", m)
+}
+
+func Interface() {
+	tm := textMes{}
+	SendMes(&tm) // 這裡的tm是textMes類型, 但是textMes類型實現了Mes接口, 所以可以將tm賦值給Mes類型
+	im := imageMes{}
+	SendMes(&im) // 這裡的im是imageMes類型, 但是imageMes類型實現了Mes接口, 所以可以將im賦值給Mes類型
+
+	var n1 int = 1
+	n1interface := interface{}(n1) // 將n1轉換為空接口類型
+	n2, ok := n1interface.(int)    // 將n1interface轉換為int類型, 並且返回兩個值, n2是轉換後的值, ok是一個bool值, 如果轉換成功, 那麼ok = true, 如果轉換失敗, 那麼ok = false
+	if ok {
+		fmt.Println("n2 =", n2)
+	} else {
+		fmt.Println("轉換失敗")
+	}
+}
+
+
+
+
+
+
+
+
 
 
 
