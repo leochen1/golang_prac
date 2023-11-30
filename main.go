@@ -39,4 +39,5 @@ func main() {
 	note.Struct()		// 4.5 結構體
 	note.Method()		// 4.6 方法
 	note.Interface()	// 4.7 接口
+	note.Goroutine()	// 5.1 goroutine
 }

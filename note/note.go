@@ -3,6 +3,7 @@ package note
 import (
 	"fmt"
 	"golang_prac/util"
+	"sync"
 )
 
 var v int = 100
@@ -698,14 +699,37 @@ func Interface() {
 	}
 }
 
+// 5.3 線程 (Goroutine)
+// Goroutine 是 Go 語言中的輕量級線程實現, 由 Go 語言的運行時(runtime)管理
+// 主線程結束時，所有的 Goroutine 都會被終止, 需要有效的阻斷機制
+// 數據競爭 :
+// 多個線程同時對同一個內存空間進行寫操作, 會造成數據競爭
+// sync 包 : 提供了互斥鎖(Mutex), 用於保護共享資源, 但在 Go 中不常用, 因為會導致性能下降
+// go 中有更高效的信道(Channel)機制, 用於保護共享資源
+var (
+	c int
+	lock sync.Mutex
+)
 
-
-
-
-
-
-
-
+func PrimeNum(n int) {
+	for i := 2; i < n; i++ {
+		if n%i == 0 {
+			return
+		}
+	}
+	fmt.Printf("%v\t", n)
+	lock.Lock() // 加鎖
+	c++
+	lock.Unlock() // 解鎖
+}
+func Goroutine() {
+	for i := 2; i < 100001; i++ {
+		go PrimeNum(i)  // 開啟 Goroutine, 並發執行, 但是不會等待 Goroutine 執行完畢, 主線程會繼續執行
+	}
+	var key string
+	fmt.Scanln(&key) // 接收鍵盤輸入, 這裡的 Scanln 會阻斷主線程, 並等待鍵盤輸入, 這樣就可以保證主線程不會在 Goroutine 執行完畢前結束
+	fmt.Printf("共找到 %v 個質數\n", c)
+}
 
 
 
