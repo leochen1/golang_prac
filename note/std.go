@@ -6,6 +6,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"unicode/utf8"
 )
 
 // 6.1 隨機數
@@ -91,6 +92,30 @@ func PackageStrings() {
 	fmt.Println(strings.Fields("ha ha \n ha\tha")) // [ha ha ha ha]
 	fmt.Println(strings.Trim("#&^\nwww.www.www.&^#", "@#$%^&*")) // www.www.www.
 }
+
+
+// 6.4 中文字符常見操作 (utf8包常見函數)
+// utf8.RuneCountInString(s string) int  // 返回字符串 s 中有幾個字符
+// utf8.RuneLen(r rune) int  // 返回字符 r 的字節長度
+// utf8.DecodeRuneInString(s string) (r rune, size int)  // 返回字符串 s 中第一個字符的值和字節長度
+// utf8.DecodeLastRuneInString(s string) (r rune, size int)  // 返回字符串 s 中最後一個字符的值和字節長度
+// utf8.EncodeRune(p []byte, r rune) int  // 將字符 r 寫入字節切片 p 中，返回寫入的字節長度
+// utf8.RuneCount(p []byte) int  // 返回字節切片 p 中有幾個字符
+// utf8.Valid(p []byte) bool  // 判斷字節切片 p 是否是合法的 utf8 編碼
+// utf8.ValidString(s string) bool  // 判斷字符串 s 是否是合法的 utf8 編碼
+// uth8.FullRune(p []byte) bool  // 判斷字節切片 p 中是否包含一個完整的字符
+// utf8.FullRuneInString(s string) bool  // 判斷字符串 s 中是否包含一個完整的字符
+func PackageUtf8() {
+	fmt.Println(utf8.RuneCountInString("advantech.com.tw")) // 16
+	fmt.Println(utf8.ValidString("advantech.com.tw")) // true
+	fmt.Println(utf8.FullRuneInString("advantech.com.tw")) // true
+}
+
+
+
+
+
+
 
 
 
