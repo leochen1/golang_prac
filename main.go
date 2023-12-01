@@ -46,4 +46,5 @@ func main() {
 
 	note.RandNum() // 6.1 隨機數	
 	note.StrConv() // 6.2 字符串類型轉換
+	note.PackageStrings() // 6.3 strings 包
 }

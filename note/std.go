@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math/rand"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -35,7 +36,6 @@ func RandNum() {
 // strconv.ParseInt(s string, base int, bitSize int) (i int64, err error)  // 字符串轉換為整數
 // strconv.FormatUint(i uint64, base int) string  // 整數轉換為字符串
 // strconv.ParseUint(s string, base int, bitSize int) (i uint64, err error)  // 字符串轉換為整數
-
 func StrConv() {
 	i1 := 123
 	s1 := "advantech.com.tw"
@@ -64,7 +64,33 @@ func StrConv() {
 }
 
 
-
+// 6.3 字符串常見操作 (strings包常見函數)
+// strings.Contains(s, substr string) bool  // 判斷字符串 s 是否包含 substr
+// strings.ContainsAny(s, chars string) bool  // 判斷字符串 s 是否包含 chars 中的任意字符
+// strings.Count(s, sep string) int  // 統計字符串 s 中有幾個不重疊的 sep, 沒有則返回 -1
+// strings.HasPrefix(s, prefix string) bool  // 判斷字符串 s 是否以 prefix 開頭
+// strings.HasSuffix(s, suffix string) bool  // 判斷字符串 s 是否以 suffix 結尾
+// strings.Index(s, sep string) int  // 返回字符串 s 中第一次出現 sep 的索引值，沒有則返回 -1
+// strings.LastIndex(s, sep string) int  // 返回字符串 s 中最後一次出現 sep 的索引值，沒有則返回 -1
+// strings.Replace(s, old, new string, n int) string  // 將字符串 s 中的前 n 個 old 替換為 new, n < 0 則替換所有
+// strings.Split(s, sep string) []string  // 將字符串 s 按照 sep 分割為字符串數組
+// strings.ToLower(s string) string  // 將字符串 s 中的所有字符轉換為小寫
+// strings.ToUpper(s string) string  // 將字符串 s 中的所有字符轉換為大寫
+// strings.TrimSpace(s string) string  // 將字符串 s 前後的空格去掉
+// strings.Trim(s string, cutset string) string  // 將字符串 s 前後的 cutset 去掉
+// strings.TrimLeft(s string, cutset string) string  // 將字符串 s 左邊的 cutset 去掉
+// strings.TrimRight(s string, cutset string) string  // 將字符串 s 右邊的 cutset 去掉
+// strings.Repeat(s string, count int) string  // 將字符串 s 重複 count 次
+// strings.Join(str []string, sep string) string  // 將字符串數組 str 用 sep 連接
+// strings.EqualFold("abc", "ABC")  // 不區分大小寫比較字符串
+// strings.Fields(s string) []string  // 將字符串 s 按照空格分割為字符串數組
+func PackageStrings() {
+	fmt.Println(strings.Contains("advantech.com.tw", "advantech")) // true
+	fmt.Println(strings.Index("advantech.com.tw", "c")) // 7
+	fmt.Println(strings.Replace("advantech.com.tw", "advantech", "adv", -1)) // adv.com.tw
+	fmt.Println(strings.Fields("ha ha \n ha\tha")) // [ha ha ha ha]
+	fmt.Println(strings.Trim("#&^\nwww.www.www.&^#", "@#$%^&*")) // www.www.www.
+}
 
 
 
