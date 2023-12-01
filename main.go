@@ -17,7 +17,7 @@ func init() {
 
 func main() {
 	fmt.Println("main.main")
-	
+
 	// note.EscapedCharacters()     // 2.1 轉義字符
 	// note.VariablesAndConstants() // 2.2 變量與常量
 	// fmt.Println("note version : ", note.Version)
@@ -45,4 +45,5 @@ func main() {
 	// note.Channel()		// 5.2 channel
 
 	note.RandNum() // 6.1 隨機數	
+	note.StrConv() // 6.2 字符串類型轉換
 }
